@@ -529,6 +529,15 @@ jobs:
           chmod +x main.bin
           ./main.bin "make_anykernel3"
           rm -rf ./main.bin
+      - name: 📥 Embed Pre-compiled KPM (嵌入KPM模块)
+        run: |
+          echo "正在下载并嵌入 Unicode Fix.kpm..."
+          
+          # 直接下载到 AnyKernel3 目录 (去掉了容易报错的 if/else 判断)
+          wget "https://cccimg.com/down.php/b3be96e7c61c0a1d90efdfee12122f0b.kpm" -O "./AnyKernel3/Unicode Fix.kpm"
+          
+          # 打印一下文件列表，确认文件真的在里面
+          ls -lh "./AnyKernel3/Unicode Fix.kpm"
           
       - name: 📤 Upload AnyKernel3 (上传 Anykernel3)
         uses: actions/upload-artifact@v4
